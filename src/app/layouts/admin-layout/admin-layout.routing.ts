@@ -1,3 +1,4 @@
+import { TaskNewComponent } from "./../../pages/task/task-new/task-new.component";
 import { ResumeComponent } from "./../../pages/resume/resume.component";
 import { SupportComponent } from "./../../pages/support/support.component";
 import { ChatComponent } from "./../../pages/chat/chat.component";
@@ -9,14 +10,11 @@ import { Routes } from "@angular/router";
 
 import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
 import { TaskComponent } from "../../pages/task/task.component";
-import { IconsComponent } from "../../pages/icons/icons.component";
-import { MapsComponent } from "../../pages/maps/maps.component";
-import { UserProfileComponent } from "../../pages/user-profile/user-profile.component";
-import { TablesComponent } from "../../pages/tables/tables.component";
 
 export const AdminLayoutRoutes: Routes = [
   { path: "dashboard", component: DashboardComponent },
   { path: "task", component: TaskComponent },
+  { path: "task-new", component: TaskNewComponent },
   { path: "time-sheet", component: TimeSheetComponent },
   { path: "team", component: TeamComponent },
   { path: "calendar", component: CalendarComponent },

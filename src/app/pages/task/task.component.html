@@ -11,7 +11,15 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <h3 class="mb-0">Tarefas</h3>
+          <div class="row align-items-center">
+            <h3 class="col mb-0">Tarefas</h3>
+            <div class="col text-right ">
+              <a class="btn btn-icon btn-danger btn-lg" routerLink="/task-new">
+                <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                <span class="btn-inner--text">Nova</span>
+              </a>
+            </div>
+          </div>
         </div>
         <div class="table-responsive">
           <table class="table align-items-center table-flush">

@@ -23,6 +23,10 @@ export class AppConstants {
     return this.baseServe + "/activity";
   }
 
+  public static get baseActivitySave(): string {
+    return this.baseActivity + "/save";
+  }
+
   public static get baseUser(): string {
     return this.baseServe + "/user";
   }

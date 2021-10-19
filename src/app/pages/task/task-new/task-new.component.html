@@ -1,0 +1,50 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <h3 class="col mb-0">Nova Tarefas</h3>
+            <div class="col text-right ">
+              <a class="btn btn-icon btn-lg" routerLink="/task">
+                <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
+                <span class="btn-inner--text">Voltar</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="formSave" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="title" class="form-control-label">Título</label>
+                  <input type="text" formControlName="title" name="title" class="form-control" id="title" placeholder="Título">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="title" class="form-control-label">Descrição</label>
+                  <textarea class="form-control form-control-alternative" formControlName="description" name="description" rows="3" placeholder="Descreva aqui sua tarefa"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12 text-right">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-danger">Salvar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

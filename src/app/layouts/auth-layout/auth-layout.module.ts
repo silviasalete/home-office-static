@@ -8,7 +8,6 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { LoginComponent } from "../../pages/login/login.component";
 import { RegisterComponent } from "../../pages/register/register.component";
-import { WelcomeComponent } from "src/app/pages/welcome/welcome.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -18,6 +17,6 @@ import { WelcomeComponent } from "src/app/pages/welcome/welcome.component";
     HttpClientModule,
     // NgbModule
   ],
-  declarations: [LoginComponent, RegisterComponent, WelcomeComponent],
+  declarations: [LoginComponent, RegisterComponent],
 })
 export class AuthLayoutModule {}
