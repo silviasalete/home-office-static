@@ -29,4 +29,12 @@ export class TaskService {
   findById(id: string): Observable<Task> {
     return this.http.get<Task>(`http://localhost:8080/activity/${id}`);
   }
+
+  update(task: Task) {
+    return this.http.put(
+      AppConstants.baseActivityUpdate,
+      JSON.stringify(task),
+      AppConstants.httpOptions
+    );
+  }
 }

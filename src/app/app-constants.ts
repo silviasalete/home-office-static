@@ -27,6 +27,10 @@ export class AppConstants {
     return this.baseActivity + "/save";
   }
 
+  public static get baseActivityUpdate(): string {
+    return this.baseActivity + "/update";
+  }
+
   public static get baseActivityDelete(): string {
     return this.baseActivity + "/delete";
   }

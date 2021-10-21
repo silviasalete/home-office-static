@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, NgForm, Validators } from "@angular/forms";
 import { Task } from "src/app/interfaces/task";
 import { ActivatedRoute, Params } from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-task-new",
@@ -20,7 +21,8 @@ export class TaskNewComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private taskService: TaskService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -37,10 +39,14 @@ export class TaskNewComponent implements OnInit {
   }
 
   onSubmit() {
-    const id = this.formSave.controls["id"].get("id");
-    console.log("this.formSave.value: ", this.formSave.value);
+    const task: Task = this.formSave.value;
 
-    // const task: Task = this.formSave.value;
-    // this.taskService.save(task).subscribe((data) => {});
+    if (task.id == null) {
+      this.taskService.save(task).subscribe((data) => {});
+    } else {
+      this.taskService.update(task).subscribe((data) => {});
+    }
+
+    this.router.navigate(["/task"]);
   }
 }

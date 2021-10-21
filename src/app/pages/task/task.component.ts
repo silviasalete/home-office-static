@@ -24,7 +24,6 @@ export class TaskComponent implements OnInit {
   }
 
   editTask(id: number) {
-    // this.router.navigate([`/task-update/${id}`]);
     this.router.navigate(["/task-update", id]);
   }
 
