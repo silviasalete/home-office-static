@@ -27,6 +27,21 @@ export class AppConstants {
     return this.baseActivity + "/save";
   }
 
+  public static get baseActivityDelete(): string {
+    return this.baseActivity + "/delete";
+  }
+
+  public static get baseActivityList(): string {
+    const page: number = 0;
+    const size: number = 4;
+    const order: string = "desc";
+
+    return (
+      this.baseActivity +
+      `?page=${page}&size=${size}&sort=id,${order}&sort=title,asc`
+    );
+  }
+
   public static get baseUser(): string {
     return this.baseServe + "/user";
   }

@@ -15,6 +15,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: "dashboard", component: DashboardComponent },
   { path: "task", component: TaskComponent },
   { path: "task-new", component: TaskNewComponent },
+  { path: "task-update/:id", component: TaskNewComponent },
   { path: "time-sheet", component: TimeSheetComponent },
   { path: "team", component: TeamComponent },
   { path: "calendar", component: CalendarComponent },

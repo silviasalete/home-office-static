@@ -1,6 +1,7 @@
-import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { HttpClient, HttpEvent } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Task } from "../interfaces/task";
+import { ResponseTask, Task } from "../interfaces/task";
 import { AppConstants } from "../app-constants";
 
 @Injectable({
@@ -15,5 +16,17 @@ export class TaskService {
       JSON.stringify(task),
       AppConstants.httpOptions
     );
+  }
+
+  list(): Observable<ResponseTask> {
+    return this.http.get<ResponseTask>(AppConstants.baseActivityList);
+  }
+
+  deleteTask(id: number): Observable<any> {
+    return this.http.delete<any>(`http://localhost:8080/activity/${id}`);
+  }
+
+  findById(id: string): Observable<Task> {
+    return this.http.get<Task>(`http://localhost:8080/activity/${id}`);
   }
 }
