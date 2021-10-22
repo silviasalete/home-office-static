@@ -11,23 +11,24 @@ import { AppConstants } from "../app-constants";
 export class UserService {
   constructor(private httpClient: HttpClient) {}
 
-  save(request: UserRequest): Observable<any> {
-    return this.httpClient.post(
-      AppConstants.baseUserSave,
-      JSON.stringify(request),
-      AppConstants.httpOptions
-    );
-  }
-
-  postLogin(username: string, ppassword: string): Observable<any> {
+  login(username: string, ppassword: string): Observable<any> {
     const login = {
       email: username,
       password: ppassword,
     };
 
     return this.httpClient.post(
-      "http://localhost:8080/activity/auth",
-      JSON.stringify(login)
+      AppConstants.baseAuth,
+      JSON.stringify(login),
+      AppConstants.httpOptions
+    );
+  }
+
+  createAccount(request: UserRequest): Observable<any> {
+    return this.httpClient.post(
+      AppConstants.baseUserSave,
+      JSON.stringify(request),
+      AppConstants.httpOptions
     );
   }
 }

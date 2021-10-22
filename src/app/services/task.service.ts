@@ -1,7 +1,7 @@
 import { Observable } from "rxjs";
 import { HttpClient, HttpEvent } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { ResponseTask, Task } from "../interfaces/task";
+import { ResponseTask, Task, TaskForm } from "../interfaces/task";
 import { AppConstants } from "../app-constants";
 
 @Injectable({
@@ -10,10 +10,10 @@ import { AppConstants } from "../app-constants";
 export class TaskService {
   constructor(private http: HttpClient) {}
 
-  save(task: Task) {
+  save(gaskForm: TaskForm) {
     return this.http.post(
       AppConstants.baseActivitySave,
-      JSON.stringify(task),
+      JSON.stringify(gaskForm),
       AppConstants.httpOptions
     );
   }

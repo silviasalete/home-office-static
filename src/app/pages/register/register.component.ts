@@ -27,7 +27,7 @@ export class RegisterComponent {
   onSubmit(): void {
     this.user = this.registerForm.value;
 
-    this.userService.save(this.user).subscribe((data) => {
+    this.userService.createAccount(this.user).subscribe((data) => {
       console.log("data", data);
       this.router.navigate(["/login", data.email]);
     });

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FormBuilder, NgForm, Validators } from "@angular/forms";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
+import { Token } from "src/app/interfaces/token";
 import { UserService } from "../../services/user.service";
 
 @Component({
@@ -9,6 +10,7 @@ import { UserService } from "../../services/user.service";
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
+  token: Token;
   public loginForm = this.formBuilder.group({
     username: this.formBuilder.control(null, Validators.required),
     password: this.formBuilder.control(null, Validators.required),
@@ -17,22 +19,29 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe(
+    this.activatedRoute.params.subscribe(
       (params: Params) => (this.emailParam = params["email"])
     );
-    console.log("email: ", this.emailParam);
     this.loginForm.controls["username"].setValue(this.emailParam);
   }
 
-  onSubmit(): void {
-    const pusername = this.loginForm.get("username")?.value;
-    const ppassword = this.loginForm.get("password")?.value;
-    this.userService.postLogin(pusername, ppassword).subscribe((data) => {
-      console.log("data", JSON.parse(JSON.stringify(data)));
-    });
+  onSubmit() {
+    const pUsername = this.loginForm.get("username")?.value;
+    const pPassword = this.loginForm.get("password")?.value;
+
+    try {
+      this.userService.login(pUsername, pPassword).subscribe((data) => {
+        this.token = data;
+        window.localStorage.setItem("token", this.token.token);
+        this.router.navigate([""]);
+      });
+    } catch (error) {
+      console.log("error em login: ", error);
+    }
   }
 }

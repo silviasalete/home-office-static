@@ -11,6 +11,16 @@ export class AppConstants {
     return httpOptions;
   }
 
+  public static get httpOptionsAuthorization(): any {
+    const httpOptions = {
+      headers: new HttpHeaders().set(
+        "Content-Type",
+        "application/json;charset=utf-8"
+      ),
+    };
+    return httpOptions;
+  }
+
   public static get baseServe(): string {
     return "http://localhost:8080";
   }

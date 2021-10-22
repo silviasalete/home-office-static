@@ -1,3 +1,4 @@
+import { TaskForm } from "./../../../interfaces/task";
 import { TaskService } from "./../../../services/task.service";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, NgForm, Validators } from "@angular/forms";
@@ -42,7 +43,11 @@ export class TaskNewComponent implements OnInit {
     const task: Task = this.formSave.value;
 
     if (task.id == null) {
-      this.taskService.save(task).subscribe((data) => {});
+      const taskForm: TaskForm = {
+        title: task.title,
+        description: task.description,
+      };
+      this.taskService.save(taskForm).subscribe((data) => {});
     } else {
       this.taskService.update(task).subscribe((data) => {});
     }

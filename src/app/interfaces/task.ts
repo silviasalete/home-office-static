@@ -4,6 +4,11 @@ export interface Task {
   description: string;
 }
 
+export interface TaskForm {
+  title: string;
+  description: string;
+}
+
 export interface Sort {
   sorted: boolean;
   unsorted: boolean;
