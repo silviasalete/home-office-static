@@ -63,4 +63,8 @@ export class AppConstants {
   public static get baseUserSave(): string {
     return this.baseUser + "/save";
   }
+
+  public static get baseSector(): string {
+    return this.baseServe + "/sector";
+  }
 }
