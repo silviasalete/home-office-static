@@ -7,7 +7,6 @@ import {
   HttpErrorResponse,
 } from "@angular/common/http";
 
-import { UserService } from "../services/user.service";
 import { throwError } from "rxjs";
 import { AccountService } from "../services/account.service";
 

@@ -19,7 +19,7 @@ export class TaskService {
   }
 
   list(): Observable<ResponseTask> {
-    return this.http.get<ResponseTask>(AppConstants.baseActivityList);
+    return this.http.get<ResponseTask>(AppConstants.baseActivityPageSort);
   }
 
   deleteTask(id: number): Observable<any> {

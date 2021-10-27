@@ -15,7 +15,7 @@ export const ROUTES: RouteInfo[] = [
     class: "",
   },
   {
-    path: "/task",
+    path: "/activity",
     title: "Tarefas",
     icon: "ni-bullet-list-67 text-red",
     class: "",

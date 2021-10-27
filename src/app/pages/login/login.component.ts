@@ -1,47 +1,38 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { FormBuilder, NgForm, Validators } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { Token } from "src/app/interfaces/token";
-import { UserService } from "../../services/user.service";
-
+import { LoginRequest } from "src/app/interfaces/login-request";
+import { Token } from "src/app/models/token";
+import { LoginService } from "src/app/services/login.service";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
-  token: Token;
-  public loginForm = this.formBuilder.group({
+  private request: LoginRequest = {} as LoginRequest;
+  public form = this.formBuilder.group({
     username: this.formBuilder.control(null, Validators.required),
     password: this.formBuilder.control(null, Validators.required),
   });
-  emailParam: string = "";
   constructor(
-    private userService: UserService,
+    private service: LoginService,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(
-      (params: Params) => (this.emailParam = params["email"])
+    this.activatedRoute.params.subscribe((params: Params) =>
+      this.form.controls["username"].setValue(params["email"])
     );
-    this.loginForm.controls["username"].setValue(this.emailParam);
   }
 
   onSubmit() {
-    const pUsername = this.loginForm.get("username")?.value;
-    const pPassword = this.loginForm.get("password")?.value;
-
-    try {
-      this.userService.login(pUsername, pPassword).subscribe((data) => {
-        this.token = data;
-        window.localStorage.setItem("token", this.token.token);
-        this.router.navigate([""]);
-      });
-    } catch (error) {
-      console.log("error em login: ", error);
-    }
+    this.request.email = this.form.get("username")?.value;
+    this.request.password = this.form.get("password")?.value;
+    this.service.login(this.request).subscribe((token: Token) => {
+      window.localStorage.setItem("token", token.token);
+      this.router.navigate([""]);
+    });
   }
 }

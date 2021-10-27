@@ -37,13 +37,13 @@
           <div class="text-center text-muted mb-4">
             <small>Ou faça login com sua conta</small>
           </div>
-          <form role="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <form role="form" [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="form-group mb-3">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
-                <input class="form-control" formControlName="username" value="{{emailParam}}" placeholder="E-mail" id="username" type="email">
+                <input class="form-control" formControlName="username" placeholder="E-mail" id="username" type="email">
               </div>
             </div>
             <div class="form-group">

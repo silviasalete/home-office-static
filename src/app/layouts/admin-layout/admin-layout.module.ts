@@ -1,3 +1,4 @@
+import { ActivityComponent } from "./../../pages/activity/activity.component";
 import { TaskNewComponent } from "./../../pages/task/task-new/task-new.component";
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
@@ -23,6 +24,11 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     ClipboardModule,
     ReactiveFormsModule,
   ],
-  declarations: [DashboardComponent, TaskComponent, TaskNewComponent],
+  declarations: [
+    DashboardComponent,
+    TaskComponent,
+    TaskNewComponent,
+    ActivityComponent,
+  ],
 })
 export class AdminLayoutModule {}

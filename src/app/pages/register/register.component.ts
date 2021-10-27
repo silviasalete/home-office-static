@@ -1,36 +1,36 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
-import { UserService } from "../../services/user.service";
-import { Role, UserRequest } from "../../interfaces/user";
+import { FormBuilder, Validators } from "@angular/forms";
+import { RegisterRequest } from "../../interfaces/register-request";
 import { Router } from "@angular/router";
+import { RegisterService } from "src/app/services/register.service";
 
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.scss"],
 })
 export class RegisterComponent {
-  private user: UserRequest = {} as UserRequest;
+  private request: RegisterRequest = {} as RegisterRequest;
 
-  registerForm = this.formBuilder.group({
-    name: "",
-    email: "",
-    password: "",
+  form = this.formBuilder.group({
+    name: this.formBuilder.control(null, Validators.required),
+    email: this.formBuilder.control(null, Validators.required),
+    password: this.formBuilder.control(null, Validators.required),
   });
 
   constructor(
-    private userService: UserService,
+    private service: RegisterService,
     private formBuilder: FormBuilder,
     private router: Router
   ) {}
 
   onSubmit(): void {
-    this.user = this.registerForm.value;
+    if (this.form.valid) {
+      this.request = this.form.value;
 
-    this.userService.createAccount(this.user).subscribe((data) => {
-      console.log("data", data);
-      this.router.navigate(["/login", data.email]);
-    });
-    this.registerForm.reset();
+      this.service.createAccount(this.request).subscribe((response) => {
+        this.router.navigate(["/login", response.email]);
+      });
+      this.form.reset();
+    }
   }
 }
