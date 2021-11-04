@@ -1,5 +1,5 @@
-import { Authority } from "./authority";
-import { User } from "./user";
+import { Authority } from "./authority.entities";
+import { User } from "./user.entities";
 
 export interface Activity {
   id: number;

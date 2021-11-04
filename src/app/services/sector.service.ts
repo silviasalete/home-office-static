@@ -2,8 +2,7 @@ import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { AppConstants } from "../app-constants";
-import { Sector } from "../interfaces/sector";
-
+import { Sector } from "../models/sector.entities";
 @Injectable({
   providedIn: "root",
 })

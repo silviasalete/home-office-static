@@ -1,4 +1,4 @@
-import { Sort } from "./sort";
+import { Sort } from "./sort.entities";
 
 export interface Pageable {
   sort: Sort;

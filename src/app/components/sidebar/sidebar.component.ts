@@ -16,7 +16,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: "/activity",
-    title: "Tarefas",
+    title: "Atividades",
     icon: "ni-bullet-list-67 text-red",
     class: "",
   },

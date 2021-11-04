@@ -1,5 +1,4 @@
 import { ActivityComponent } from "./../../pages/activity/activity.component";
-import { TaskNewComponent } from "./../../pages/task/task-new/task-new.component";
 import { ResumeComponent } from "./../../pages/resume/resume.component";
 import { SupportComponent } from "./../../pages/support/support.component";
 import { ChatComponent } from "./../../pages/chat/chat.component";
@@ -10,16 +9,10 @@ import { CalendarComponent } from "./../../pages/calendar/calendar.component";
 import { Routes } from "@angular/router";
 
 import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
-import { TaskComponent } from "../../pages/task/task.component";
 
 export const AdminLayoutRoutes: Routes = [
   { path: "dashboard", component: DashboardComponent },
-  // { path: "task", component: TaskComponent },
-  // { path: "task-new", component: TaskNewComponent },
-  // { path: "task-update/:id", component: TaskNewComponent },
   { path: "activity", component: ActivityComponent },
-  // { path: "task-new", component: TaskNewComponent },
-  // { path: "task-update/:id", component: TaskNewComponent },
   { path: "time-sheet", component: TimeSheetComponent },
   { path: "team", component: TeamComponent },
   { path: "calendar", component: CalendarComponent },

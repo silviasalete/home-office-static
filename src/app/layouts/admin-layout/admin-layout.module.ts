@@ -1,5 +1,4 @@
 import { ActivityComponent } from "./../../pages/activity/activity.component";
-import { TaskNewComponent } from "./../../pages/task/task-new/task-new.component";
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
@@ -10,7 +9,6 @@ import { ClipboardModule } from "ngx-clipboard";
 
 import { AdminLayoutRoutes } from "./admin-layout.routing";
 import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
-import { TaskComponent } from "../../pages/task/task.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -24,11 +22,6 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     ClipboardModule,
     ReactiveFormsModule,
   ],
-  declarations: [
-    DashboardComponent,
-    TaskComponent,
-    TaskNewComponent,
-    ActivityComponent,
-  ],
+  declarations: [DashboardComponent, ActivityComponent],
 })
 export class AdminLayoutModule {}

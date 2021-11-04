@@ -45,12 +45,15 @@ export class AppConstants {
   }
   public static baseActivityFindById(id: number): string {
     return this.baseActivity + "/" + id;
-    // `http://localhost:8080/activity/${id}`
   }
-  public static get baseActivityPageSort(): string {
-    const page: number = 0;
-    const size: number = 4;
-    const order: string = "desc";
+  public static baseActivityPageSort(
+    page: number,
+    size: number,
+    order: string
+  ): string {
+    // const page: number = 0;
+    // const size: number = 4;
+    // const order: string = "desc";
 
     return (
       this.baseActivity +

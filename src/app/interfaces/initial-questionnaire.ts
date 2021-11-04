@@ -1,4 +1,4 @@
-import { Sector } from "./sector";
+import { Sector } from "../models/sector.entities";
 
 export interface InitialQuestionnaire {
   nameAdmin: string;

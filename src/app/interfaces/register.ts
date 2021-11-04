@@ -1,5 +1,5 @@
-import { Authority } from "../models/authority";
-import { Role } from "../models/role";
+import { Authority } from "../models/authority.entities";
+import { Role } from "../models/role.entities";
 
 export interface RegisterResponse {
   id: number;
@@ -13,4 +13,9 @@ export interface RegisterResponse {
   accountNonExpired: boolean;
   credentialsNonExpired: boolean;
   authorities: Authority[];
+}
+export interface RegisterRequest {
+  name: string;
+  email: string;
+  password: string;
 }
