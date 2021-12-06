@@ -1,4 +1,5 @@
 import { HttpHeaders } from "@angular/common/http";
+import { Sector } from "./models/sector.entities";
 
 export class AppConstants {
   /**
@@ -76,5 +77,21 @@ export class AppConstants {
    */
   public static get baseSector(): string {
     return this.baseServe + "/sector";
+  }
+  public static baseSectorFindById(id: Sector): string {
+    return this.baseSector + "/" + id;
+  }
+
+  /**
+   * Company
+   */
+  public static get baseCompany(): string {
+    return this.baseServe + "/company";
+  }
+  public static get baseCompanySave(): string {
+    return this.baseCompany + "/save";
+  }
+  public static get associateSectors(): string {
+    return this.baseCompany + "/associate";
   }
 }

@@ -12,4 +12,8 @@ export class SectorService {
   all(): Observable<Sector[]> {
     return this.httpClient.get<Sector[]>(AppConstants.baseSector);
   }
+
+  findById(id: Sector): Observable<Sector> {
+    return this.httpClient.get<Sector>(AppConstants.baseSectorFindById(id));
+  }
 }

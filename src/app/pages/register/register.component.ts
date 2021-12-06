@@ -10,13 +10,20 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { RegisterRequest } from "../../interfaces/register";
 import { RegisterService } from "src/app/services/register.service";
 import { SectorService } from "src/app/services/sector.service";
+import { CompanyService } from "src/app/services/company.service";
+import { CompanyRequest, CompanyResponse } from "src/app/interfaces/company";
 
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
 })
 export class RegisterComponent implements OnInit {
-  private request: RegisterRequest = {} as RegisterRequest;
+  private requestRegister: RegisterRequest = {} as RegisterRequest;
+  private requestCompany: CompanyResponse = {} as CompanyResponse;
+  private companySaved: CompanyResponse = {} as CompanyResponse;
+  private sectorsSelected: Sector[];
+  private arraySector: Sector[] = [];
+
   public isAdm: boolean = false;
   public sectors: Array<Sector> = [];
 
@@ -24,11 +31,13 @@ export class RegisterComponent implements OnInit {
     name: this.formBuilder.control(null, Validators.required),
     email: this.formBuilder.control(null, Validators.required),
     password: this.formBuilder.control(null, Validators.required),
+    company: this.formBuilder.control(null, Validators.required),
     sectorSelected: new FormArray([]),
   });
 
   constructor(
     private registerService: RegisterService,
+    private companyService: CompanyService,
     private sectorService: SectorService,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -76,13 +85,38 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit(): void {
     if (this.form.valid) {
-      console.log("this.form.value: ", this.form.value);
+      // 1º Salvar Usuário
+      this.requestRegister.name = this.form.get("name").value;
+      this.requestRegister.email = this.form.get("email").value;
+      this.requestRegister.password = this.form.get("password").value;
+      this.sectorsSelected = this.form.get("sectorSelected").value;
+      this.registerService
+        .createAccount(this.requestRegister)
+        .subscribe((responseRegister) => {});
 
-      this.request = this.form.value;
-
-      this.registerService.createAccount(this.request).subscribe((response) => {
-        this.router.navigate(["/login", response.email]);
+      // 3º Associar Empresa aos setores
+      this.sectorsSelected.map((s) => {
+        this.sectorService.findById(s).subscribe((sector) => {
+          this.arraySector.push(sector);
+        });
       });
+      // 2º Salvar Empresa
+      this.requestCompany.name = this.form.get("company").value;
+      this.requestCompany.sectors = this.arraySector;
+      this.companyService
+        .associateCompanyToSectors(this.requestCompany)
+        .subscribe((responseCompany) => {
+          this.companySaved = responseCompany;
+
+          // this.companySaved.sectors = this.arraySector;
+          // this.companyService
+          //   .associateCompanyToSectors(this.companySaved)
+          //   .subscribe((data) => {
+          //     console.log("data associateCompanyToSectors: ", data);
+          //   });
+        });
+
+      // this.router.navigate(["/login", responseRegister.email]);
       this.form.reset();
     }
   }
